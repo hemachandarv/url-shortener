@@ -3,7 +3,7 @@ package main
 import (
 	"net/http"
 
-	"github.com/hemv/url-shortener/handler"
+	"github.com/hemv/url-shortener/redirect"
 )
 
 func main() {
@@ -12,14 +12,14 @@ func main() {
 		"/urlshort-godoc": "https://godoc.org/github.com/gophercises/urlshort",
 		"/yaml-godoc":     "https://godoc.org/gopkg.in/yaml.v2",
 	}
-	mapHandler := handler.MapHandler(pathToUrls, mux)
+	mapHandler := redirect.MapHandler(pathToUrls, mux)
 	yamlData := `
 - path: /urlshort
   url: https://github.com/gophercises/urlshort
 - path: /urlshort-final
   url: https://github.com/gophercises/urlshort/tree/solution
 `
-	yamlHandler, err := handler.YAMLHandler([]byte(yamlData), mapHandler)
+	yamlHandler, err := redirect.YAMLHandler([]byte(yamlData), mapHandler)
 	if err != nil {
 		panic(err)
 	}

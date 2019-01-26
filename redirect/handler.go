@@ -1,4 +1,4 @@
-package handler
+package redirect
 
 import (
 	"net/http"
